@@ -1,0 +1,9 @@
+[Unit]
+Description=Temperature Measurement App
+
+[Service]
+ExecStart=/usr/bin/python3 /var/temp_measurement/server.py
+KillMode=process
+Restart=always
+RestartSec=10s
+User=pi
