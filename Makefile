@@ -11,10 +11,10 @@ dependencies: push-app
 	$(SSH) "sudo pip3 install -r $(APPPATH)/requirements.txt"
 
 push-app:
-	$(SSH) "sudo mkdir -p $(APPPATH)"
-	$(SSH) "sudo mkdir -p $(APPPATH)/logs"
+	$(SSH) "sudo mkdir -p $(APPPATH)/templates"
 	$(SSH) "sudo chown -R $(USER):$(USER) $(APPPATH)"
-	scp server.py log_temperature.py requirements.txt $(SSHSRV):$(APPPATH)/
+	scp *.py requirements.txt $(SSHSRV):$(APPPATH)/
+	scp templates/* $(SSHSRV):$(APPPATH)/templates/
 
 push-service:
 	cat temp_measurement.service|$(SSH) "sudo tee /etc/systemd/system/multi-user.target.wants/temp_measurement.service > /dev/null"

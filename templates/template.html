@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['line']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('datetime', 'Datetime');
+            data.addColumn('number', 'Temperature');
+            data.addColumn('number', 'Humidity');
+            data.addRows([myData]);
+
+            var options = {
+                chart: {
+                    title: 'Temperature and Humidity diagram'
+                 },
+                width: 900,
+                height: 500,
+                series: {
+                    0: {axis: 'Temps'},
+                    1: {axis: 'Humi'}
+                },
+                axes: {
+                    y: {
+                        Temps: {label: 'Temperature (Celsius)'},
+                        Humi: {label: 'Humidity (%)'}
+                    }
+                }
+            };
+
+            var chart = new google.charts.Line(document.getElementById('chart_div'));
+            chart.draw(data, google.charts.Line.convertOptions(options));
+        }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="text-align:-moz-center"></div>
+  </body>
+</html>

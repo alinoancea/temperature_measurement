@@ -35,7 +35,7 @@ def get_temp_hum(sensor_type=Adafruit_DHT.DHT11, pin_no=4):
 
 def log_temperature_and_humidity(path=None, delay=300, once=False):
     """
-    Loggs temperature and humidity if a path exists, else print on stdout
+    Logs temperature and humidity if a path exists, else print on stdout
     @params
     :path: string - path where to put loggs
     :delay: int - waiting time between readings (in seconds)
@@ -43,7 +43,7 @@ def log_temperature_and_humidity(path=None, delay=300, once=False):
     calibrate()
     while True:
         i = get_temp_hum()
-        info_formated = '%s;%s;%s' % (time.strftime('%d-%m-%y %H:%M'), i['temperature'], i['humidity'])
+        info_formated = '%s;%s;%s' % (time.time(), i['temperature'], i['humidity'])
         if once:
             return info_formated
         if path:
